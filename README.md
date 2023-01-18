@@ -81,6 +81,63 @@ In order to run this project locally, simply fork and clone the repository or do
 
 ### Installation
 
+1. Clone the repo
+```
+git clone https://github.com/genryeiter/arvelduse-veebirakendus
+```
+
+2. Install YARN packages
+```
+npm install
+```
+
+3. Start the local frontend
+   In the first terminal
+
+cd client and create a .env file in the root of your client directory.
+Supply the following credentials
+
+```
+REACT_APP_GOOGLE_CLIENT_ID = 
+REACT_APP_API = http://localhost:5000
+REACT_APP_URL = http://localhost:3000
+```
+
+To get your Google ClientID for authentication, go to the Credential Page (if you are new, then [create a new project first](https://console.cloud.google.com/projectcreate) and follow the following steps;
+- Click Create credentials > OAuth client ID.
+- Select the Web application type.
+- Name your OAuth client and click Create
+- Remember to provide your domain and redirect URL so that Google identifies the origin domain to which it can display the consent screen. In development, that is going to be `http://localhost:3000` and `http://localhost:3000/login`
+- Copy the Client ID and assign it to the variable `REACT_APP_GOOGLE_CLIENT_ID` in your .env file
+
+```
+cd client
+npm install (to install client-side dependencies)
+npm start (to start the client)
+```
+4. Start the local backend
+   In the second terminal
+- cd server and create a .env file in the root of your server directory.
+- Supply the following credentials
+
+```
+DB_URL =         // <-- your mongodb atlas connection url 
+PORT = 5000      // <-- default node.js port
+SECRET =         // <-- is used token sign  
+SMTP_HOST =      // <-- is used for nodemailer
+SMTP_PORT =      // <-- is used for nodemailer
+SMTP_USER =      // <-- is used for nodemailer
+SMTP_PASS =      // <-- is used for nodemailer
+```
+
+5. Please follow [This tutorial](https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database) to create your mongoDB connection url, which you'll use as your DB_URL
+```
+$ cd server
+$ npm install (to install server-side dependencies)
+& npm start (to start the server)
+```
+
+6. And you are ready to go!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -107,7 +164,7 @@ Project Link: [https://github.com/genryeiter/arvelduse-veebirakendus](https://gi
 
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 
-[license-url]: https://github.com/genryeiter/dragons-of-mugloar/blob/master/LICENSE.txt
+[license-url]: https://github.com/genryeiter/arvelduse-veebirakendus/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
