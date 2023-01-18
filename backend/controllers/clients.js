@@ -50,3 +50,13 @@ export const deleteClient = async (req, res) => {
     res.json({message: 'Client deleted successfully'})
 }
 
+export const getClientsByUser = async (req, res) => {
+    const {searchQuery} = req.query;
+    try {
+        const clients = await ClientModel.find({userId: searchQuery});
+        res.json({data: clients});
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+}
+
