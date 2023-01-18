@@ -1,4 +1,5 @@
 import ClientModel from '../models/ClientModel.js'
+import mongoose from "mongoose";
 
 export const getClient = async (req, res) => {
     const {id} = req.params;
@@ -24,16 +25,21 @@ export const getClients = async (req, res) => {
 }
 
 export const createClient = async (req, res) => {
-
     const client = req.body
-
-    const newClient = new ClientModel({...client, createdAt: new Date().toISOString() })
-
+    const newClient = new ClientModel({...client, createdAt: new Date().toISOString()})
     try {
         await newClient.save()
         res.status(201).json(newClient)
     } catch (error) {
         res.status(409).json(error.message)
     }
+}
+
+export const updateClient = async (req, res) => {
+    const {id: _id} = req.params
+    const client = req.body
+    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No client with that id')
+    const updatedClient = await ClientModel.findByIdAndUpdate(_id, {...client, _id}, {new: true})
+    res.json(updatedClient)
 }
 
