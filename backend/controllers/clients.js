@@ -23,3 +23,17 @@ export const getClients = async (req, res) => {
     }
 }
 
+export const createClient = async (req, res) => {
+
+    const client = req.body
+
+    const newClient = new ClientModel({...client, createdAt: new Date().toISOString() })
+
+    try {
+        await newClient.save()
+        res.status(201).json(newClient)
+    } catch (error) {
+        res.status(409).json(error.message)
+    }
+}
+
