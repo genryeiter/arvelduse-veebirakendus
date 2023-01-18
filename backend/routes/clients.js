@@ -1,10 +1,11 @@
 import express from 'express'
-import {createClient, getClients} from '../controllers/clients.js'
+import {createClient, deleteClient, getClients, updateClient} from '../controllers/clients.js'
 
 const router = express.Router()
 
 router.get('/', getClients)
 router.post('/', createClient)
 router.patch('/:id', updateClient)
+router.delete('/:id', deleteClient)
 
 export default router

@@ -43,3 +43,10 @@ export const updateClient = async (req, res) => {
     res.json(updatedClient)
 }
 
+export const deleteClient = async (req, res) => {
+    const {id} = req.params
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Client with that id')
+    await ClientModel.findByIdAndRemove(id)
+    res.json({message: 'Client deleted successfully'})
+}
+
