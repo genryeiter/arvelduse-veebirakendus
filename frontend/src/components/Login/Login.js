@@ -5,6 +5,7 @@ import styles from './Login.module.css'
 import {Link} from 'react-router-dom'
 import {Button, Paper, Grid, Typography, Container} from '@material-ui/core'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {GoogleLogin} from '@react-oauth/google';
 
 const initialState = {
     firstName: '',
@@ -39,9 +40,23 @@ const Login = () => {
         setLoading(true)
     }
 
-
     const switchMode = () => {
         setIsSignup((prevState) => !prevState)
+    }
+
+    const googleSuccess = async (res) => {
+        console.log(res)
+        try {
+            window.location.href = '/dashboard'
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const googleError = (error) => {
+        console.log(error)
+        console.log("Google Sign In was unseccassful. Try again later")
     }
 
     return (
@@ -69,9 +84,10 @@ const Login = () => {
                                 <button className={styles.loginBtn}>{isSignup ? 'Sign Up' : 'Sign In'}</button>
                             }
                         </div>
-                        <div>
-                            google login
-                        </div>
+                        <GoogleLogin
+                            onSuccess={googleSuccess}
+                            onError={() => googleError}
+                        />
                     </div>
                     <Grid container justifyContent="center">
                         <Grid item>
