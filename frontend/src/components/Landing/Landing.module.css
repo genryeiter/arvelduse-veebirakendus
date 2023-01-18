@@ -1,0 +1,95 @@
+.mainContainer {
+    background-color: #F3F8FF;
+}
+
+.headerSection {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 60px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.logoImg {
+    width: 70px;
+    height: 70px;
+}
+
+.startButton {
+    border: 1px solid #0C7AFF;
+    padding: 12px 30px;
+    border-radius: 50px;
+    background-color: white;
+    color: #0C7AFF;
+    cursor: pointer;
+    font-size: 25px;
+    outline: none;
+    margin-right: 20px;
+}
+
+.startButton:hover {
+    background-color: #0CD3FF;
+    color: white;
+    transition: 0.3s;
+}
+
+.welcomeSection {
+    width: 50%;
+    margin: 30px auto;
+    margin-top: 70px;
+    line-height: 60px;
+}
+
+.welcomeSection h1 {
+    font-weight: 500;
+    font-size: 60px;
+    color: #123868;
+    line-height: 50px;
+    text-align: center;
+}
+
+.textContainer {
+    margin-top: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: gray;
+    color: #4D6A8F;
+}
+
+.imageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcomeSection img {
+    width: 450px;
+    margin: 0 auto;
+}
+
+.buttonWrapper {
+    width: max-content;
+    margin: 0 auto;
+}
+
+
+.footerText {
+    border-top: solid 1px rgb(219, 219, 219);
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .welcomeSection {
+        width: 80%;
+    }
+
+    .welcomeSection img {
+        width: 400px;
+        margin: 70px auto;
+    }
+
+}
