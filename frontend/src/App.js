@@ -9,12 +9,12 @@ import {GoogleOAuthProvider} from '@react-oauth/google';
 
 function App() {
 
-
     return (
         <div>
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
                 <BrowserRouter>
                     <Switch>
+
                         <Route path="/" exact component={Landing}/>
                         <Route path="/login" exact component={Login}/>
                         <Route path="/forgot" exact component={Forgot}/>
