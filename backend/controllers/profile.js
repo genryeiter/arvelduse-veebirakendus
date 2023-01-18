@@ -47,3 +47,38 @@ export const deleteProfile = async (req, res) => {
     await ProfileModel.findByIdAndRemove(id);
     res.json({message: "Profile deleted successfully."});
 }
+
+
+export const createProfile = async (req, res) => {
+    const {
+        name,
+        email,
+        phoneNumber,
+        businessName,
+        contactAddress,
+        logo,
+        website,
+        userId,
+    } = req.body;
+
+    const newProfile = new ProfileModel({
+        name,
+        email,
+        phoneNumber,
+        businessName,
+        contactAddress,
+        logo,
+        website,
+        userId,
+        createdAt: new Date().toISOString()
+    })
+
+    try {
+        const existingUser = await ProfileModel.findOne({email})
+        if (existingUser) return res.status(404).json({message: "Profile already exist"})
+        await newProfile.save();
+        res.status(201).json(newProfile);
+    } catch (error) {
+        res.status(409).json({message: error.message});
+    }
+}
