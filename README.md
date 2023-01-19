@@ -41,15 +41,17 @@ any type of business need. With this application, you can send simple invoices, 
 
 ## App Features
 
-- Emailing receipts, estimates, quotes, invoices, and other documents.
-- Multiple user registration using jsonwebtoken (jwt) with Google authentication.
-- Shipping Create PDF invoices, estimates, quotations, and receipts and email or download them.
-- Automatic status update after adding a payment record.
-- Establishing the deadline Each invoice has a section outlining the payment history, including date, method, and other
-  details.
+- Emailing receipts, estimates, quotes and invoices.
+- Auth system using jsonwebtoken (jwt) with Google OAuth2.
+- Create/Send/Download PDF invoices, estimates, quotations, and receipts.
+- Record payment functional with automatic status update.
+- Establishing the deadline for receipts, estimates, quotes, invoices.
+- Each invoice has a section outlining the payment history, including date, method, and other details.
 - Tracking the payment of invoice parties.
-- The admin dashboard neatly displays all invoice statistics, including total amount, total pending amount, recent
-  payments, total paid invoice amount, total unpaid invoice amount, and total partially paid invoices.
+- The admin dashboard neatly displays all invoice statistics, including received payments, total amount, pending amount, recent
+  payments, total paid invoice amount, and total invoices, overdue invoices.
+- Dashboard admin has resizable chart tab with functional to export chart statistics to svg, png, csv.
+- Business profile settings (saves business logo as well in cloud storage)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -72,6 +74,7 @@ The section below shows a list of used technologies, libraries and IDE
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 - [Nodemailer](https://nodemailer.com/about/)
 - [html-pdf](https://www.npmjs.com/package/html-pdf)
+- [Jest](https://jestjs.io/ru/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
