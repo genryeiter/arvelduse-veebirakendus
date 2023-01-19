@@ -6,6 +6,7 @@ import Forgot from "./components/Forgot/Forgot";
 import Reset from "./components/Forgot/Reset";
 import Dashboard from "./components/Dashboard/Dashboard";
 import {GoogleOAuthProvider} from '@react-oauth/google';
+import Header from "./components/Header/Header";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <div>
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
                 <BrowserRouter>
+                    <Header/>
                     <Switch>
 
                         <Route path="/" exact component={Landing}/>
