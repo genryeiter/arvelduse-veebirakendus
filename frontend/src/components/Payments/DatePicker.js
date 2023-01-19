@@ -12,22 +12,22 @@ export default function MaterialUIPickers({setSelectedDate, selectedDate}) {
     };
 
     return (<MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justifyContent="space-around"
-                  style={{width: '97%', paddingLeft: '10px', paddingBottom: '15px'}}>
-                <KeyboardDatePicker
-                    fullWidth
-                    disableToolbar
-                    variant="outline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="Date paid"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
-                />
-            </Grid>
-        </MuiPickersUtilsProvider>);
+        <Grid container justifyContent="space-around"
+              style={{width: '97%', paddingLeft: '10px', paddingBottom: '15px'}}>
+            <KeyboardDatePicker
+                fullWidth
+                disableToolbar
+                variant="outline"
+                format="MM/dd/yyyy"
+                margin="normal"
+                id="date-picker-inline"
+                label="Date paid"
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                    'aria-label': 'change date',
+                }}
+            />
+        </Grid>
+    </MuiPickersUtilsProvider>);
 }
