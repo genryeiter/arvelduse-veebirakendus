@@ -7,14 +7,14 @@ import Reset from "./components/Forgot/Reset";
 import Dashboard from "./components/Dashboard/Dashboard";
 import {GoogleOAuthProvider} from '@react-oauth/google';
 import Header from "./components/Header/Header";
-import SnackbarProvider from 'react-simple-snackbar'
 import Invoice from "./components/Invoice/Invoice";
 import InvoiceDetails from "./components/InvoiceDetails/InvoiceDetails";
-import Invoices from "./reducers/invoices";
 import ClientList from "./components/Clients/ClientList";
 import Settings from "./components/Settings/Settings";
 import NavBar from './components/NavBar/NavBar';
 import Footer from "./components/Footer/Footer";
+import Invoices from "./components/Invoices/Invoices";
+import SnackbarProvider from 'react-simple-snackbar'
 
 function App() {
     const user = JSON.parse(localStorage.getItem('profile'))

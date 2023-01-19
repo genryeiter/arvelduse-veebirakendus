@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import {useHistory} from 'react-router-dom'
+import {useHistory, useLocation} from 'react-router-dom'
 import moment from 'moment'
 import PropTypes from 'prop-types';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
@@ -21,11 +21,10 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import Container from '@material-ui/core/Container'
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
-import {useLocation} from 'react-router-dom';
 import {deleteInvoice, getInvoicesByUser} from '../../actions/invoiceActions';
-import {useSnackbar} from 'react-simple-snackbar'
 import NoData from '../../icons/svgIcons/NoData';
 import Spinner from '../../Spinner/Spinner'
+import {useSnackbar} from 'react-simple-snackbar'
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -123,7 +122,6 @@ const Invoices = () => {
     const toCommas = (value) => {
         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
-
 
     const classes = useStyles2();
     const [page, setPage] = React.useState(0);
