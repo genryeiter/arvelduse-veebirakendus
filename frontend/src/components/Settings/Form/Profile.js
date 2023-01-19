@@ -23,41 +23,41 @@ export default function ProfileDetail({profiles}) {
     const classes = useStyles();
 
     return (<>
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderBottom: 'solid 1px #dddddd',
-                paddingBottom: '20px'
-            }}>
-                <Avatar alt={profiles?.businessName} src={profiles?.logo} className={classes.large}/>
-            </div>
-            <List className={classes.root}>
-                <ListItem>
-                    <BusinessCenterIcon style={{marginRight: '20px', color: 'gray'}}/>
-                    <ListItemText primary={profiles?.businessName} secondary=""/>
-                </ListItem>
+        <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderBottom: 'solid 1px #dddddd',
+            paddingBottom: '20px'
+        }}>
+            <Avatar alt={profiles?.businessName} src={profiles?.logo} className={classes.large}/>
+        </div>
+        <List className={classes.root}>
+            <ListItem>
+                <BusinessCenterIcon style={{marginRight: '20px', color: 'gray'}}/>
+                <ListItemText primary={profiles?.businessName} secondary=""/>
+            </ListItem>
 
-                <ListItem>
-                    <LocationOnIcon style={{marginRight: '20px', color: 'gray'}}/>
-                    <ListItemText primary={profiles?.contactAddress} secondary=""/>
-                </ListItem>
+            <ListItem>
+                <LocationOnIcon style={{marginRight: '20px', color: 'gray'}}/>
+                <ListItemText primary={profiles?.contactAddress} secondary=""/>
+            </ListItem>
 
-                <ListItem>
-                    <PhoneInTalkIcon style={{marginRight: '20px', color: 'gray'}}/>
-                    <ListItemText primary={profiles?.phoneNumber} secondary=""/>
-                </ListItem>
+            <ListItem>
+                <PhoneInTalkIcon style={{marginRight: '20px', color: 'gray'}}/>
+                <ListItemText primary={profiles?.phoneNumber} secondary=""/>
+            </ListItem>
 
-                <ListItem>
-                    <AlternateEmailIcon style={{marginRight: '20px', color: 'gray'}}/>
-                    <ListItemText primary={profiles?.email} secondary=""/>
-                </ListItem>
+            <ListItem>
+                <AlternateEmailIcon style={{marginRight: '20px', color: 'gray'}}/>
+                <ListItemText primary={profiles?.email} secondary=""/>
+            </ListItem>
 
-                <ListItem>
-                    <AccountBalanceWalletRoundedIcon style={{marginRight: '20px', color: 'gray'}}/>
-                    <ListItemText primary={profiles?.paymentDetails} secondary=""/>
-                </ListItem>
+            <ListItem>
+                <AccountBalanceWalletRoundedIcon style={{marginRight: '20px', color: 'gray'}}/>
+                <ListItemText primary={profiles?.paymentDetails} secondary=""/>
+            </ListItem>
 
-            </List>
-        </>);
+        </List>
+    </>);
 }
