@@ -7,6 +7,7 @@ import Reset from "./components/Forgot/Reset";
 import Dashboard from "./components/Dashboard/Dashboard";
 import {GoogleOAuthProvider} from '@react-oauth/google';
 import Header from "./components/Header/Header";
+import SnackbarProvider from 'react-simple-snackbar'
 
 function App() {
 
@@ -14,16 +15,19 @@ function App() {
         <div>
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
                 <BrowserRouter>
-                    <Header/>
-                    <Switch>
+                    <SnackbarProvider>
 
-                        <Route path="/" exact component={Landing}/>
-                        <Route path="/login" exact component={Login}/>
-                        <Route path="/forgot" exact component={Forgot}/>
-                        <Route path="/dashboard" exact component={Dashboard}/>
-                        <Route path="/reset/:token" exact component={Reset}/>
+                        <Header/>
+                        <Switch>
 
-                    </Switch>
+                            <Route path="/" exact component={Landing}/>
+                            <Route path="/login" exact component={Login}/>
+                            <Route path="/forgot" exact component={Forgot}/>
+                            <Route path="/dashboard" exact component={Dashboard}/>
+                            <Route path="/reset/:token" exact component={Reset}/>
+
+                        </Switch>
+                    </SnackbarProvider>
                 </BrowserRouter>
             </GoogleOAuthProvider>
         </div>

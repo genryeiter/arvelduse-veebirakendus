@@ -2,19 +2,20 @@ import React, {useState} from 'react'
 import Field from './Field'
 import useStyles from './styles'
 import styles from './Login.module.css'
-import {Link} from 'react-router-dom'
-import {Button, Paper, Grid, Typography, Container} from '@material-ui/core'
+import {useDispatch} from 'react-redux'
+import {useHistory, Link} from 'react-router-dom'
+import {signup, signin} from '../../actions/auth'
+import {Avatar, Button, Paper, Grid, Typography, Container} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import {createProfile} from '../../actions/profile'
+import { useSnackbar } from 'react-simple-snackbar'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {GoogleLogin} from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
+import {CREATE_PROFILE} from "../../actions/constants";
 
 const initialState = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    profilePicture: '',
-    bio: ''
+    firstName: '', lastName: '', email: '', password: '', confirmPassword: '', profilePicture: '', bio: ''
 }
 
 const Login = () => {
@@ -22,7 +23,12 @@ const Login = () => {
     const classes = useStyles();
     const [formData, setFormData] = useState(initialState)
     const [isSignup, setIsSignup] = useState(false)
+    const dispatch = useDispatch()
+    const history = useHistory()
     const [showPassword, setShowPassword] = useState(false);
+    // eslint-disable-next-line
+    const [openSnackbar, closeSnackbar] = useSnackbar()
+    const user = JSON.parse(localStorage.getItem('profile'))
     const [loading, setLoading] = useState(false)
 
     const handleShowPassword = () => setShowPassword(!showPassword);
@@ -33,22 +39,36 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (isSignup) {
-            // todo redux dispatch
+            dispatch(signup(formData, openSnackbar, setLoading))
         } else {
-            // todo redux dispatch
+            dispatch(signin(formData, openSnackbar, setLoading))
         }
         setLoading(true)
     }
+
 
     const switchMode = () => {
         setIsSignup((prevState) => !prevState)
     }
 
     const googleSuccess = async (res) => {
-        console.log(res)
-        try {
-            window.location.href = '/dashboard'
+        const result = jwt_decode(res?.credential);
+        const token = res?.credential
+        dispatch(createProfile({
+            name: result?.name,
+            email: result?.email,
+            userId: result?.sub,
+            phoneNumber: '',
+            businessName: '',
+            contactAddress: '',
+            logo: result?.picture,
+            website: ''
+        }))
 
+        try {
+            dispatch({type: "AUTH", data: {result, token}})
+            window.location.href = '/dashboard'
+            openSnackbar("Sign up successful")
         } catch (error) {
             console.log(error)
         }
@@ -56,21 +76,25 @@ const Login = () => {
 
     const googleError = (error) => {
         console.log(error)
-        console.log("Google Sign In was unseccassful. Try again later")
+        console.log("Google Sign In was unsuccessful. Try again later")
     }
 
-    return (
-        <Container component="main" maxWidth="md">
+    if (user) {
+        history.push('/dashboard')
+    }
+
+    return (<Container component="main" maxWidth="sm">
             <Paper className={classes.paper} elevation={2}>
+                <Avatar className={classes.avatar}>
+                    <LockOutlinedIcon/>
+                </Avatar>
                 <Typography component="h1" variant="h5">{isSignup ? 'Sign up' : 'Sign in'}</Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
-                        {isSignup && (
-                            <>
+                        {isSignup && (<>
                                 <Field name="firstName" label="First Name" handleChange={handleChange} autoFocus half/>
                                 <Field name="lastName" label="Last Name" handleChange={handleChange} half/>
-                            </>
-                        )}
+                            </>)}
                         <Field name="email" label="Email Address" handleChange={handleChange} type="email"/>
                         <Field name="password" label="Password" handleChange={handleChange}
                                type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword}/>
@@ -79,10 +103,7 @@ const Login = () => {
                     </Grid>
                     <div className={styles.buttons}>
                         <div>
-                            {loading ? <CircularProgress/>
-                                :
-                                <button className={styles.loginBtn}>{isSignup ? 'Sign Up' : 'Sign In'}</button>
-                            }
+                            {loading ? <CircularProgress/> : <button className={styles.loginBtn}>{isSignup ? 'Sign Up' : 'Sign In'}</button>}
                         </div>
                         <GoogleLogin
                             onSuccess={googleSuccess}
@@ -96,12 +117,14 @@ const Login = () => {
                             </Button>
                         </Grid>
                     </Grid>
-                    <Link to="forgot"><p style={{textAlign: 'center', color: '#1d7dd6', marginTop: '20px'}}>Forgotten
-                        Password?</p></Link>
+                    <Link to="forgot">
+                        <p style={{textAlign: 'center', color: '#1d7dd6', marginTop: '20px'}}>
+                            Forgotten Password?
+                        </p>
+                    </Link>
                 </form>
             </Paper>
-        </Container>
-    )
+        </Container>)
 }
 
 export default Login

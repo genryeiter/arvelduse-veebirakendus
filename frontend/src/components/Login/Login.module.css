@@ -8,12 +8,11 @@
     margin: 50px auto;
     border-radius: 8px;
     border: solid 1px rgb(207, 207, 207);
-
 }
 
 .formContainer form {
     padding: 10px 15px !important;
-    margin: 0 !important;
+    margin: 0px !important;
 }
 
 .inputField {
@@ -21,9 +20,9 @@
     width: 100%;
     padding: 15px 15px 15px 10px;
     font-size: 16px;
-    border: 1px solid rgb(219, 219, 219);
+    border: none;
     border-radius: 8px;
-    margin: 10px 0;
+    margin: 10px 0px;
     outline: none;
 }
 
@@ -31,15 +30,13 @@
     border-bottom: 2px solid rgb(1, 24, 224);
 }
 
-
 .buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 5px;
-    margin: 20px 0;
-
+    margin: 20px 0px;
 }
 
 .buttons > div {
@@ -95,10 +92,9 @@
     color: white;
 }
 
-
 .switchBtn {
     border-radius: 4px;
-    padding: 10px 10px 30px 10px;
+    padding: 10px;
     margin-top: 5px;
     background-color: white;
     cursor: pointer;
@@ -111,7 +107,6 @@
 .switchBtn:hover {
     background-color: rgb(245, 245, 245);
 }
-
 
 @media screen and (max-width: 992px) {
     .formContainer {
