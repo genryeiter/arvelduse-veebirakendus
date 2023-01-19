@@ -3,17 +3,21 @@ import {useHistory} from 'react-router-dom'
 import {Button, Paper, Typography, Container, Grid} from '@material-ui/core';
 import useStyles from './styles';
 import Field from '../Login/Field';
+import {forgot} from '../../actions/auth';
 import styles from './Forgot.module.css'
+import {useDispatch} from "react-redux";
 
 const Forgot = () => {
-    const classes = useStyles();
+    const classes = useStyles()
     const history = useHistory()
-    const [form, setForm] = useState("");
+    const [form, setForm] = useState("")
     const [step, setStep] = useState(0)
+    const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'))
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        dispatch(forgot({email: form}))
         window.navigator.onLine ? setStep(1) : setStep(2)
     }
 
@@ -43,7 +47,7 @@ const Forgot = () => {
                     {step === 1 && (
                         <div>
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><i
-    className="fas fa-check-circle" style={{fontSize: '55px', color: '#3e6947'}}/></div>
+                                className="fas fa-check-circle" style={{fontSize: '55px', color: '#3e6947'}}/></div>
                             <br/>
                             <p>A password reset link has been sent to your email. Please follow the link to reset your
                                 password</p>
@@ -58,7 +62,7 @@ const Forgot = () => {
                     {step === 2 && (
                         <div>
                             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><i
-    className="fas fa-check-circle" style={{fontSize: '55px', color: '#3e6947'}}/></div>
+                                className="fas fa-check-circle" style={{fontSize: '55px', color: '#3e6947'}}/></div>
                             <br/>
                             <p>Please check your internet connection and try again</p>
                             <div className={styles.buttons}>
