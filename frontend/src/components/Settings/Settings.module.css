@@ -9,7 +9,7 @@
 
 .hero {
     width: 50%;
-    margin: 0px auto;
+    margin: 0 auto;
     padding: 30px 50px;
     line-height: 60px;
 }
@@ -37,7 +37,7 @@
 
 .hero img {
     width: 1200px;
-    margin: 0px auto;
+    margin: 0 auto;
 }
 
 .autoGrid {
@@ -51,7 +51,6 @@
       );
     grid-gap: 0.5rem;
 }
-
 
 .listItem {
     display: flex;
@@ -68,7 +67,6 @@
     background-color: white;
 }
 
-
 .listItem h2 {
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -83,7 +81,7 @@
     text-align: center;
     font-size: 40px;
     line-height: 45px;
-    padding: 0px 25px 10px 25px;
+    padding: 0 25px 10px 25px;
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
     cursor: pointer;
@@ -92,17 +90,15 @@
 
 .listItem:hover {
     background-color: #f8f8f8;
-
 }
 
 .listItem:hover h2 {
     color: rgb(0, 0, 0);
-
 }
 
 
 .imgThumbnail {
-    margin: 0px auto;
+    margin: 0 auto;
     border-radius: 100%;
     object-fit: cover;
     width: 25px;
@@ -120,7 +116,6 @@
     align-items: center;
     justify-content: center;
 }
-
 
 @media all and (max-width: 768px) {
 
