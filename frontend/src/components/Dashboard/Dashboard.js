@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {toCommas} from '../utils/utils'
+import {toCommas} from '../../utils/utils'
 import styles from './Dashboard.module.css'
 import {useHistory, useLocation} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
@@ -8,17 +8,22 @@ import Empty from '../../icons/svgIcons/Empty'
 import Chart from './Chart'
 import moment from 'moment'
 import {Check, Pie, Bag, Card, Clock} from './Icons'
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../../Spinner/Spinner'
 
 
 const Dashboard = () => {
-
     const location = useLocation()
     const history = useHistory()
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('profile'))
     const {invoices, isLoading} = useSelector((state) => state?.invoices)
     const overDue = invoices?.filter((invoice) => invoice.dueDate <= new Date().toISOString())
+    const paid = invoices?.filter((invoice) => invoice.status === 'Paid')
+
+    useEffect(() => {
+        dispatch(getInvoicesByUser({search: user?.result?._id || user?.result?.sub}));
+        // eslint-disable-next-line
+    }, [location, dispatch]);
 
     let paymentHistory = []
     for (let i = 0; i < invoices.length; i++) {
@@ -49,21 +54,9 @@ const Dashboard = () => {
         totalAmount += invoices[i].total
     }
 
-
-    useEffect(() => {
-        dispatch(getInvoicesByUser({search: user?.result?._id || user?.result?.sub}));
-        // eslint-disable-next-line
-    }, [location, dispatch]);
-
-
-    const unpaidInvoice = invoices?.filter((invoice) => invoice.status === 'Unpaid')
-    const paid = invoices?.filter((invoice) => invoice.status === 'Paid')
-    const partial = invoices?.filter((invoice) => invoice.status === 'Partial')
-
     if (!user) {
         history.push('/login')
     }
-
 
     if (isLoading) {
         return <div style={{
@@ -77,12 +70,10 @@ const Dashboard = () => {
         return <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingTop: '20px'
         }}>
-            {/* <Spinner /> */}
             <Empty/>
             <p style={{padding: '40px', color: 'gray'}}>Nothing to display. Click the plus icon to start creating</p>
         </div>
     }
-
 
     return (<div className={styles.pageContainer}>
         <section className={styles.stat}>
@@ -123,8 +114,6 @@ const Dashboard = () => {
                         <Card/>
                     </div>
                 </li>
-
-
                 <li className={styles.listItem} style={{backgroundColor: '#206841', color: 'white'}}>
                     <div>
                         <p>{paid.length}</p>
@@ -168,20 +157,18 @@ const Dashboard = () => {
                             <th style={{padding: '15px'}}>Payment Method</th>
                             <th style={{padding: '15px'}}>Note</th>
                         </tr>)}
-                        {sortHistoryByDate.slice(-10).map((record) => (
-                            <tr className={styles.tableRow} key={record._id}>
-                                <td>
-                                    <button>{record?.paidBy?.charAt(0)}</button>
-                                </td>
-                                <td>{record.paidBy}</td>
-                                <td>{moment(record.datePaid).format('MMMM Do YYYY')}</td>
-                                <td><h3
-                                    style={{color: '#00A86B', fontSize: '14px'}}>{toCommas(record.amountPaid)}</h3>
-                                </td>
-                                <td>{record.paymentMethod}</td>
-                                <td>{record.note}</td>
-                            </tr>
-                        ))}
+                        {sortHistoryByDate.slice(-10).map((record) => (<tr className={styles.tableRow} key={record._id}>
+                            <td>
+                                <button>{record?.paidBy?.charAt(0)}</button>
+                            </td>
+                            <td>{record.paidBy}</td>
+                            <td>{moment(record.datePaid).format('MMMM Do YYYY')}</td>
+                            <td><h3
+                                style={{color: '#00A86B', fontSize: '14px'}}>{toCommas(record.amountPaid)}</h3>
+                            </td>
+                            <td>{record.paymentMethod}</td>
+                            <td>{record.note}</td>
+                        </tr>))}
                         </tbody>
                     </table>
                 </div>
