@@ -8,40 +8,27 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-
 import {useDispatch} from 'react-redux'
 import {createClient} from '../../actions/clientActions'
 import {useLocation} from 'react-router-dom';
-
 import {useSnackbar} from 'react-simple-snackbar'
 
 const styles = (theme) => ({
     root: {
-        margin: 0,
-        padding: theme.spacing(2),
-        backgroundColor: '#1976D2',
-        marginLeft: 0,
-    },
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: 'white',
+        margin: 0, padding: theme.spacing(2), backgroundColor: '#1976D2', marginLeft: 0,
+    }, closeButton: {
+        position: 'absolute', right: theme.spacing(1), top: theme.spacing(1), color: 'white',
     },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
     const {children, classes, onClose, ...other} = props;
-    return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
-            {onClose ? (
-                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon/>
-                </IconButton>
-            ) : null}
-        </MuiDialogTitle>
-    );
+    return (<MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+        {onClose ? (<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <CloseIcon/>
+        </IconButton>) : null}
+    </MuiDialogTitle>);
 });
 
 const DialogContent = withStyles((theme) => ({
@@ -52,8 +39,7 @@ const DialogContent = withStyles((theme) => ({
 
 const DialogActions = withStyles((theme) => ({
     root: {
-        margin: 0,
-        padding: theme.spacing(1),
+        margin: 0, padding: theme.spacing(1),
     },
 }))(MuiDialogActions);
 
@@ -65,7 +51,6 @@ const AddClient = ({setOpen, open}) => {
     const user = JSON.parse(localStorage.getItem('profile'))
     // eslint-disable-next-line
     const [openSnackbar, closeSnackbar] = useSnackbar()
-
 
     useEffect(() => {
         var checkId = user?.result?._id
@@ -80,7 +65,6 @@ const AddClient = ({setOpen, open}) => {
     const handleSubmitClient = (e) => {
         e.preventDefault()
         dispatch(createClient(clientData, openSnackbar))
-
         clear()
         handleClose()
     }
@@ -92,7 +76,6 @@ const AddClient = ({setOpen, open}) => {
     const handleClose = () => {
         setOpen(false);
     };
-
 
     const inputStyle = {
         display: "block",
@@ -112,69 +95,60 @@ const AddClient = ({setOpen, open}) => {
         transition: "all 0.25s cubic-bezier(0.4, 0, 1, 1)"
     }
 
-    const focus = {
-        "input:focus, textarea:focus": {outline: "0", borderBottomColor: "#ffab00"}
-    }
 
-
-    return (
+    return (<div>
         <div>
-            <div>
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}
-                                 style={{paddingLeft: '20px', color: 'white'}}>
-                        New Customer
-                    </DialogTitle>
-                    <DialogContent dividers>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}
+                             style={{paddingLeft: '20px', color: 'white'}}>
+                    New Customer
+                </DialogTitle>
+                <DialogContent dividers>
+                    <div className="customInputs">
+                        <input
+                            placeholder="Name"
+                            style={inputStyle}
+                            name='name'
+                            type='text'
+                            onChange={(e) => setClientData({...clientData, name: e.target.value})}
+                            value={clientData.name}
+                        />
 
-
-                        <div className="customInputs">
-                            <input
-                                placeholder="Name"
-                                style={inputStyle}
-                                name='name'
-                                type='text'
-                                onChange={(e) => setClientData({...clientData, name: e.target.value})}
-                                value={clientData.name}
-                            />
-
-                            <input
-                                placeholder="Email"
-                                style={inputStyle}
-                                name='email'
-                                type='text'
-                                onChange={(e) => setClientData({...clientData, email: e.target.value})}
-                                value={clientData.email}
-                            />
-                            <input
-                                placeholder="Phone"
-                                style={inputStyle}
-                                name='phone'
-                                type='text'
-                                onChange={(e) => setClientData({...clientData, phone: e.target.value})}
-                                value={clientData.phone}
-                            />
-                            <input
-                                placeholder="Address"
-                                style={inputStyle}
-                                name='address'
-                                type='text'
-                                onChange={(e) => setClientData({...clientData, address: e.target.value})}
-                                value={clientData.address}
-                            />
-                        </div>
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button autoFocus onClick={handleSubmitClient} variant="contained"
-                                style={{marginRight: '25px'}}>
-                            Save Customer
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
+                        <input
+                            placeholder="Email"
+                            style={inputStyle}
+                            name='email'
+                            type='text'
+                            onChange={(e) => setClientData({...clientData, email: e.target.value})}
+                            value={clientData.email}
+                        />
+                        <input
+                            placeholder="Phone"
+                            style={inputStyle}
+                            name='phone'
+                            type='text'
+                            onChange={(e) => setClientData({...clientData, phone: e.target.value})}
+                            value={clientData.phone}
+                        />
+                        <input
+                            placeholder="Address"
+                            style={inputStyle}
+                            name='address'
+                            type='text'
+                            onChange={(e) => setClientData({...clientData, address: e.target.value})}
+                            value={clientData.address}
+                        />
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={handleSubmitClient} variant="contained"
+                            style={{marginRight: '25px'}}>
+                        Save Customer
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
-    );
+    </div>);
 }
 
 export default AddClient

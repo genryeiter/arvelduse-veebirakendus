@@ -9,7 +9,6 @@ export default function SelectType({type, setType}) {
         id="combo-box-demo"
         options={options}
         getOptionLabel={(option) => option.title || ''}
-        //   getOptionSelected={(option, value) => option.title === value.value}
         value={type}
         onChange={(event, value) => setType(value)}
         style={{width: 300}}
