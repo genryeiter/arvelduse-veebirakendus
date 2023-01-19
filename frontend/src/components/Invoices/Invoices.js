@@ -22,9 +22,10 @@ import Container from '@material-ui/core/Container'
 import DeleteOutlineRoundedIcon from '@material-ui/icons/DeleteOutlineRounded';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import {useLocation} from 'react-router-dom';
-
 import {deleteInvoice, getInvoicesByUser} from '../../actions/invoiceActions';
 import {useSnackbar} from 'react-simple-snackbar'
+import NoData from '../../icons/svgIcons/NoData';
+import Spinner from '../../Spinner/Spinner'
 
 const useStyles1 = makeStyles((theme) => ({
     root: {
@@ -33,7 +34,6 @@ const useStyles1 = makeStyles((theme) => ({
 }));
 
 function TablePaginationActions(props) {
-
     const classes = useStyles1();
     const theme = useTheme();
     const {count, page, rowsPerPage, onPageChange} = props;
@@ -94,9 +94,7 @@ const useStyles2 = makeStyles(theme => ({
     table: {
         minWidth: 500,
 
-    },
-
-    tablecell: {
+    }, tablecell: {
         fontSize: '16px'
     }
 }));
@@ -105,7 +103,6 @@ const tableStyle = {
     width: 160, fontSize: 14, cursor: 'pointer', borderBottom: 'none', padding: '8px', textAlign: 'center'
 }
 const headerStyle = {borderBottom: 'none', textAlign: 'center'}
-
 
 const Invoices = () => {
 
@@ -122,7 +119,6 @@ const Invoices = () => {
         dispatch(getInvoicesByUser({search: user?.result?._id || user?.result?.sub}));
         // eslint-disable-next-line
     }, [location])
-
 
     const toCommas = (value) => {
         return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -143,7 +139,6 @@ const Invoices = () => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
 
     const editInvoice = (id) => {
         history.push(`/edit/invoice/${id}`)
@@ -231,10 +226,9 @@ const Invoices = () => {
                                     </IconButton>
                                 </TableCell>
                             </TableRow>))}
-
                         {emptyRows > 0 && (<TableRow style={{height: 53 * emptyRows}}>
-                            <TableCell colSpan={6}/>
-                        </TableRow>)}
+                                <TableCell colSpan={6}/>
+                            </TableRow>)}
                     </TableBody>
                     <TableFooter>
                         <TableRow>
