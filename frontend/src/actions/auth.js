@@ -32,8 +32,7 @@ export const signup = (formData, openSnackbar, setLoading) => async (dispatch) =
             website: ''
         });
         dispatch({type: CREATE_PROFILE, payload: info});
-        // window.location.href = "/dashboard"
-        history.push('/dashboard')
+        window.location.href = "/dashboard"
         openSnackbar("Sign up successfull")
     } catch (error) {
         console.log(error)
@@ -55,7 +54,6 @@ export const reset = (formData, history) => async (dispatch) => {
     try {
         await api.reset(formData)
         history.push('/dashboard')
-
     } catch (error) {
         alert(error)
     }

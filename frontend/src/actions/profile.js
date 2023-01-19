@@ -26,7 +26,6 @@ export const getProfiles = () => async (dispatch) => {
         const {data} = await api.fetchProfiles();
         dispatch({type: FETCH_PROFILES, payload: data});
         dispatch({type: END_LOADING})
-
     } catch (error) {
         console.log(error);
     }
@@ -37,29 +36,16 @@ export const getProfilesByUser = (searchQuery) => async (dispatch) => {
         dispatch({type: START_LOADING})
         const {data: {data}} = await api.fetchProfilesByUser(searchQuery)
         dispatch({type: FETCH_PROFILE_BY_USER, payload: data});
-
         dispatch({type: END_LOADING})
     } catch (error) {
         console.log(error.response)
     }
 }
 
-export const getProfilesBySearch = (searchQuery) => async (dispatch) => {
-    try {
-        dispatch({type: START_LOADING});
-        const {data: {data}} = await api.fetchProfilesBySearch(searchQuery);
-        dispatch({type: FETCH_PROFILES_BY_USER, payload: {data}});
-        dispatch({type: END_LOADING});
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 export const createProfile = (profile, history) => async (dispatch) => {
     try {
         const {data} = await api.createProfile(profile);
         console.log(data)
-        console.log('penis')
         dispatch({type: CREATE_PROFILE, payload: data});
     } catch (error) {
         console.log(error);
