@@ -26,7 +26,6 @@ Built using the MERN stack (MongoDB, Express, React and NodeJS).
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#project-structure">Project Structure</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
