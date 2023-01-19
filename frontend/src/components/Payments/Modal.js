@@ -25,11 +25,11 @@ const styles = (theme) => ({
 const DialogTitle = withStyles(styles)((props) => {
     const {children, classes, onClose, ...other} = props;
     return (<MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
-            {onClose ? (<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon/>
-                </IconButton>) : null}
-        </MuiDialogTitle>);
+        <Typography variant="h6">{children}</Typography>
+        {onClose ? (<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <CloseIcon/>
+        </IconButton>) : null}
+    </MuiDialogTitle>);
 });
 
 const DialogContent = withStyles((theme) => ({
@@ -78,7 +78,6 @@ const Modal = ({setOpen, open, invoice}) => {
     useEffect(() => {
         if (invoice?.paymentRecords) {
             setPaymentRecords(invoice?.paymentRecords)
-
         }
     }, [invoice])
 
@@ -115,61 +114,56 @@ const Modal = ({setOpen, open, invoice}) => {
     const paymentMethods = [{title: 'Bank Transfer'}, {title: 'Cash'}, {title: 'Credit Card'}, {title: 'PayPal'}, {title: 'Others'},]
 
     return (<div>
-            <form>
-                <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
-                    <DialogTitle id="customized-dialog-title" onClose={handleClose}
-                                 style={{paddingLeft: '20px', color: 'white'}}>
-                        Record Payment
-                    </DialogTitle>
-                    <DialogContent dividers>
-
-                        <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
-
-                        <TextField
-                            type="number"
-                            name="amountPaid"
-                            label="Amount Paid"
-                            fullWidth
-                            style={{padding: 10}}
-                            variant="outlined"
-                            onChange={(e) => setPayment({...payment, amountPaid: e.target.value})}
-                            value={payment.amountPaid}
+        <form>
+            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
+                <DialogTitle id="customized-dialog-title" onClose={handleClose}
+                             style={{paddingLeft: '20px', color: 'white'}}>
+                    Record Payment
+                </DialogTitle>
+                <DialogContent dividers>
+                    <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
+                    <TextField
+                        type="number"
+                        name="amountPaid"
+                        label="Amount Paid"
+                        fullWidth
+                        style={{padding: 10}}
+                        variant="outlined"
+                        onChange={(e) => setPayment({...payment, amountPaid: e.target.value})}
+                        value={payment.amountPaid}
+                    />
+                    <Grid item fullWidth>
+                        <Autocomplete
+                            id="combo-box-demo"
+                            options={paymentMethods}
+                            getOptionLabel={(option) => option.title || ''}
+                            style={{width: '96%', marginLeft: '10px'}}
+                            renderInput={(params) => <TextField {...params} label="Payment Method"
+                                                                variant="outlined"/>}
+                            value={method}
+                            onChange={(event, value) => setMethod(value)}
                         />
-
-                        <Grid item fullWidth>
-                            <Autocomplete
-                                id="combo-box-demo"
-                                options={paymentMethods}
-                                getOptionLabel={(option) => option.title || ''}
-                                style={{width: '96%', marginLeft: '10px'}}
-                                renderInput={(params) => <TextField {...params} label="Payment Method"
-                                                                    variant="outlined"/>}
-                                value={method}
-                                onChange={(event, value) => setMethod(value)}
-                            />
-                        </Grid>
-
-                        <TextField
-                            type="text"
-                            name="note"
-                            label="Note"
-                            fullWidth
-                            style={{padding: 10}}
-                            variant="outlined"
-                            onChange={(e) => setPayment({...payment, note: e.target.value})}
-                            value={payment.note}
-                        />
-
-                    </DialogContent>
-                    <DialogActions>
-                        <Button autoFocus onClick={handleSubmitPayment} variant="contained"
-                                style={{marginRight: '25px'}}>
-                            Save Record
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </form>
-        </div>);
+                    </Grid>
+                    <TextField
+                        type="text"
+                        name="note"
+                        label="Note"
+                        fullWidth
+                        style={{padding: 10}}
+                        variant="outlined"
+                        onChange={(e) => setPayment({...payment, note: e.target.value})}
+                        value={payment.note}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={handleSubmitPayment} variant="contained"
+                            style={{marginRight: '25px'}}>
+                        Save Record
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </form>
+    </div>);
 }
 
 export default Modal

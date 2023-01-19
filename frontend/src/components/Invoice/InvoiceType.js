@@ -22,21 +22,18 @@ const useStyles = makeStyles((theme) => ({
 const InvoiceType = ({type, setType}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-
-
     const handleChange = (event) => {
         setType(event.target.value);
     };
-
     const handleClickOpen = () => {
         setOpen(true);
     };
-
     const handleClose = () => {
         setOpen(false);
     };
 
-    return (<div>
+    return (
+        <div>
             <Typography variant="overline" style={{color: 'gray'}} gutterBottom>Select type</Typography>
             <Button style={{lineSpacing: 1, fontSize: 35, fontWeight: 700}}
                     onClick={handleClickOpen}>{type ? type : 'Invoice'}</Button>

@@ -45,16 +45,16 @@ export default function Uploader({form, setForm}) {
     });
 
     return (<>
-            <div
-                {...getRootProps()}
-                className={`${styles.dropzone} ${isDragActive ? styles.active : null}`}
-            >
-                <input {...getInputProps()} />
-                Upload Profile Picture
-            </div>
-            <Grid item style={{width: '100%'}}>
-                <BorderLinearProgress variant="determinate" value={progress}/>
-            </Grid>
-        </>);
+        <div
+            {...getRootProps()}
+            className={`${styles.dropzone} ${isDragActive ? styles.active : null}`}
+        >
+            <input {...getInputProps()} />
+            Upload Profile Picture
+        </div>
+        <Grid item style={{width: '100%'}}>
+            <BorderLinearProgress variant="determinate" value={progress}/>
+        </Grid>
+    </>);
 }
 

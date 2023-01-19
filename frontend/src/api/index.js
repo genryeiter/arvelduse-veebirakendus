@@ -16,12 +16,10 @@ export const deleteInvoice = (id) => API.delete(`/invoices/${id}`)
 export const fetchInvoicesByUser = (searchQuery) => API.get(`/invoices?searchQuery=${searchQuery.search}`);
 
 export const fetchClient = (id) => API.get(`/clients/${id}`);
-export const fetchClients = (page) => API.get(`/clients?page=${page}`);
 export const addClient = (client) => API.post('/clients', client)
 export const updateClient = (id, updatedClient) => API.patch(`/clients/${id}`, updatedClient)
 export const deleteClient = (id) => API.delete(`/clients/${id}`)
 export const fetchClientsByUser = (searchQuery) => API.get(`/clients/user?searchQuery=${searchQuery.search}`);
-
 
 export const signIn = (formData) => API.post('/users/signin', formData)
 export const signUp = (formData) => API.post('/users/signup', formData)

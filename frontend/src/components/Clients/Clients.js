@@ -149,7 +149,6 @@ const Clients = ({setOpen, setCurrentId, clients}) => {
             <Container style={{width: '85%'}}>
                 <TableContainer component={Paper} elevation={0}>
                     <Table className={classes.table} aria-label="custom pagination table">
-
                         <TableHead>
                             <TableRow>
                                 <TableCell style={{...headerStyle, width: '10px'}}>Number</TableCell>
@@ -158,10 +157,8 @@ const Clients = ({setOpen, setCurrentId, clients}) => {
                                 <TableCell style={headerStyle}>Phone</TableCell>
                                 <TableCell style={headerStyle}>Edit</TableCell>
                                 <TableCell style={headerStyle}>Delete</TableCell>
-
                             </TableRow>
                         </TableHead>
-
                         <TableBody>
                             {(rowsPerPage > 0
                                     ? rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -185,7 +182,6 @@ const Clients = ({setOpen, setCurrentId, clients}) => {
                                     </TableCell>
                                 </TableRow>
                             ))}
-
                             {emptyRows > 0 && (
                                 <TableRow style={{height: 53 * emptyRows}}>
                                     <TableCell colSpan={6}/>

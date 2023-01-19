@@ -13,17 +13,17 @@ const Settings = () => {
     }
 
     return (<div className={styles.pageContainer}>
-            <section className={styles.hero}>
-                <h1>Profile Settings</h1>
-                <div className={styles.paragraph}>
-                    <p>Edit your business profile</p>
-                </div>
-            </section>
-            <section className={styles.stat}>
-                <Form user={user}/>
-            </section>
+        <section className={styles.hero}>
+            <h1>Profile Settings</h1>
+            <div className={styles.paragraph}>
+                <p>Edit your business profile</p>
+            </div>
+        </section>
+        <section className={styles.stat}>
+            <Form user={user}/>
+        </section>
 
-        </div>)
+    </div>)
 }
 
 export default Settings
