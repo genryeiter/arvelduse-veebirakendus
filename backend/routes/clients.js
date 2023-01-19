@@ -7,6 +7,6 @@ router.get('/', getClients)
 router.post('/', createClient)
 router.patch('/:id', updateClient)
 router.delete('/:id', deleteClient)
-router.get('/user', getClientsByUser);
+router.get('/user', getClientsByUser)
 
 export default router
