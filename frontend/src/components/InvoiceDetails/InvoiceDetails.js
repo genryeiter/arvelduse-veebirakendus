@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useSnackbar} from 'react-simple-snackbar'
 import {useLocation, useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {initialState} from '../../initialState'
+import {initialState} from '../../../initialState'
 import {getInvoice} from '../../actions/invoiceActions'
 import {toCommas} from '../../utils/utils'
 import styles from './InvoiceDetails.module.css'
@@ -22,7 +22,7 @@ import {Container, Grid} from '@material-ui/core';
 import Divider from '@material-ui/core/Divider';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../../Spinner/Spinner'
 import ProgressButton from 'react-progress-button'
 import axios from 'axios';
 import {saveAs} from 'file-saver';
@@ -61,9 +61,7 @@ const InvoiceDetails = () => {
             width: theme.spacing(12), height: theme.spacing(12),
         }, table: {
             minWidth: 650,
-        },
-
-        headerContainer: {
+        }, headerContainer: {
             paddingTop: theme.spacing(1),
             paddingLeft: theme.spacing(5),
             paddingRight: theme.spacing(1),
@@ -208,11 +206,10 @@ const InvoiceDetails = () => {
                 <Container className={classes.headerContainer}>
                     <Grid container justifyContent="space-between" style={{padding: '30px 0px'}}>
                         {!invoice?.creator?.includes(user?.result._id || user?.result?.sub) ? (<Grid item>
-                        </Grid>) : (
-                            <Grid item onClick={() => history.push('/settings')} style={{cursor: 'pointer'}}>
-                                {company?.logo ? <img src={company?.logo} alt="Logo" className={styles.logo}/> :
-                                    <h2>{company?.name}</h2>}
-                            </Grid>)}
+                        </Grid>) : (<Grid item onClick={() => history.push('/settings')} style={{cursor: 'pointer'}}>
+                            {company?.logo ? <img src={company?.logo} alt="Logo" className={styles.logo}/> :
+                                <h2>{company?.name}</h2>}
+                        </Grid>)}
                         <Grid item style={{marginRight: 40, textAlign: 'right'}}>
                             <Typography style={{
                                 lineSpacing: 1, fontSize: 45, fontWeight: 700, color: 'gray'
@@ -272,6 +269,7 @@ const InvoiceDetails = () => {
                                         <TableCell>Price</TableCell>
                                         <TableCell>Disc(%)</TableCell>
                                         <TableCell>Amount</TableCell>
+
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
