@@ -48,7 +48,6 @@ const Settings = () => {
     const handleChange = (e) => setForm({...form, [e.target.name]: e.target.value});
 
     return (<div>
-
         {switchEdit === 0 && (<Container component="main" maxWidth="sm">
             <Paper className={classes.paper} elevation={0}>
                 <ProfileDetail profiles={profiles}/>
@@ -56,7 +55,6 @@ const Settings = () => {
                         onClick={() => setSwitchEdit(1)}>Edit Profile</Button>
             </Paper>
         </Container>)}
-
         {switchEdit === 1 && (<Container component="main" maxWidth="sm">
             <Paper className={classes.paper} elevation={1}>
                 <div style={{
