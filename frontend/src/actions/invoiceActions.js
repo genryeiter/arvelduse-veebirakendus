@@ -6,7 +6,6 @@ export const getInvoicesByUser = (searchQuery) => async (dispatch) => {
     try {
         dispatch({type: START_LOADING})
         const {data: {data}} = await api.fetchInvoicesByUser(searchQuery)
-        console.log(data)
         dispatch({type: FETCH_INVOICE_BY_USER, payload: data});
         dispatch({type: END_LOADING})
     } catch (error) {

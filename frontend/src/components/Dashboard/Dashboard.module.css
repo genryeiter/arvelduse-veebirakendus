@@ -155,14 +155,15 @@
 
 
 .table {
-    width: 90%;
+    width: 90%!important;
     margin: 0 auto;
-    overflow-x: auto;
+    overflow-x:auto;
 }
 
 .table table {
-    border-collapse: separate;
-    border-spacing: 0 0;
+    width: 100%!important;
+    border-collapse:separate;
+    border-spacing:0 0;
     white-space: nowrap;
 }
 

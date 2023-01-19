@@ -1,12 +1,11 @@
-/* eslint-disable */
 import React, {useState, useEffect} from 'react'
 import Clients from './Clients'
 import AddClient from './AddClient'
 import {getClientsByUser} from '../../actions/clientActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {useLocation, useHistory} from 'react-router-dom'
-import NoData from '../svgIcons/NoData'
-import Spinner from '../Spinner/Spinner'
+import NoData from '../../icons/svgIcons/NoData'
+import Spinner from '../../Spinner/Spinner'
 
 
 const ClientList = () => {

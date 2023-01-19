@@ -26,8 +26,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-import {initialState} from '../../../initialState'
-import currencies from '../../../currencies.json'
+import {initialState} from '../../initialState'
+import currencies from '../../currencies.json'
 import {createInvoice, getInvoice, updateInvoice} from '../../actions/invoiceActions';
 import {getClientsByUser} from '../../actions/clientActions'
 import AddClient from './AddClient';
