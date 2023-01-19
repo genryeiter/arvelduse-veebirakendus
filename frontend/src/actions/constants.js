@@ -14,7 +14,6 @@ export const FETCH_CLIENTS_BY_USER = 'FETCH_PROFILE_USER';
 export const AUTH = "AUTH"
 export const LOGOUT = "LOGOUT"
 export const UPDATE_USER = "UPDATE_USER"
-export const FETCH_USERS = "FETCH_USERS"
 export const START_LOADING = "START_LOADING"
 export const END_LOADING = "END_LOADING"
 export const FETCH_CLIENT = "FETCH_CLIENT"
