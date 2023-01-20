@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import styles from './InvoiceDetails.module.css'
+import {toCommas} from "../../utils/utils";
 
 const PaymentHistory = ({paymentRecords}) => {
     return (
@@ -21,9 +22,9 @@ const PaymentHistory = ({paymentRecords}) => {
                             {paymentRecords?.map((record) => (
                                 <tr key={record._id}>
                                     <td>{moment(record.datePaid).format('MMMM Do YYYY')}</td>
+                                    <td>{toCommas(record.amountPaid)}</td>
                                     <td>{record.paymentMethod}</td>
                                 </tr>
-
                             ))}
                             </tbody>
                         </table>
