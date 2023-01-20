@@ -1,7 +1,6 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import SnackbarProvider from 'react-simple-snackbar'
-import Home from './components/Home/Home';
 import Invoice from './components/Invoice/Invoice';
 import Invoices from './components/Invoices/Invoices';
 import InvoiceDetails from './components/InvoiceDetails/InvoiceDetails'
@@ -12,9 +11,10 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import Settings from './components/Settings/Settings';
-import Forgot from './components/Password/Forgot'
-import Reset from './components/Password/Reset'
+import Forgot from './components/Forgot/Forgot'
+import Reset from './components/Forgot/Reset'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Landing from "./components/Landing/Landing";
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
                         {user && <NavBar/>}
                         <Header/>
                         <Switch>
-                            <Route path="/" exact component={Home}/>
+                            <Route path="/" exact component={Landing}/>
                             <Route path="/invoice" exact component={Invoice}/>
                             <Route path="/edit/invoice/:id" exact component={Invoice}/>
                             <Route path="/invoice/:id" exact component={InvoiceDetails}/>

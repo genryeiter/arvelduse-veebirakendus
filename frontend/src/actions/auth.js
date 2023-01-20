@@ -6,7 +6,7 @@ export const signin = (formData, openSnackbar, setLoading) => async (dispatch) =
     try {
         const {data} = await api.signIn(formData)
         dispatch({type: AUTH, data})
-        openSnackbar("Signin successfull")
+        openSnackbar("Signin successful")
         window.location.href = "/dashboard"
     } catch (error) {
         openSnackbar(error?.response?.data?.message)
