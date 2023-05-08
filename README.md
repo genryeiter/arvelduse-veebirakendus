@@ -5,7 +5,7 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-# Arvelduse Veebirakendus - Tallinna Ülikooli Projekt
+# Arvelduse Veebirakendus - Tallinn University Project
 
 Built using the MERN stack (MongoDB, Express, React and NodeJS).
 
